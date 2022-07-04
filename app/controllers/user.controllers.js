@@ -19,7 +19,7 @@ export const loginUser = async (req, res) => {
       req.body.password
     );
     const token = await user.generateAuthToken();
-    res.status(200).send({ user, token });
+    res.send({ user, token });
   } catch (e) {
     res.status(400).send();
   }
@@ -32,7 +32,7 @@ export const logoutUser = async (req, res) => {
     });
     await req.user.save();
 
-    res.status(200).send();
+    res.send();
   } catch (e) {
     res.status(500).send();
   }
@@ -42,14 +42,14 @@ export const logoutAllUserInstances = async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
-    res.status(200).send();
+    res.send();
   } catch (e) {
     res.status(500).send();
   }
 };
 
 export const getUserProfile = async (req, res) => {
-  res.status(200).send(req.user);
+  res.send(req.user);
 };
 
 export const updateUserProfile = async (req, res) => {
@@ -66,7 +66,7 @@ export const updateUserProfile = async (req, res) => {
   try {
     updates.forEach((update) => (req.user[update] = req.body[update]));
     await req.user.save();
-    res.status(200).send(req.user);
+    res.send(req.user);
   } catch (e) {
     res.status(400).send(e);
   }
@@ -75,7 +75,7 @@ export const updateUserProfile = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     await req.user.remove();
-    res.status(200).send(req.user);
+    res.send(req.user);
   } catch (e) {
     res.status(500).send();
   }

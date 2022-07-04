@@ -17,7 +17,7 @@ export const createProduct = async (req, res) => {
 export const getUserProducts = async (req, res) => {
   try {
     await req.user.populate("products");
-    res.status(200).send(req.user.products);
+    res.send(req.user.products);
   } catch (e) {
     res.status(500).send();
   }
@@ -32,7 +32,7 @@ export const getUserProduct = async (req, res) => {
     if (!product) {
       return res.status(404).send();
     }
-    res.status(200).send(product);
+    res.send(product);
   } catch (e) {
     res.status(500).send();
   }
@@ -44,13 +44,9 @@ export const getAllProducts = async (req, res) => {
       return res.status(404).send();
     }
     if (Object.keys(req.body).includes("isAdmin")) {
-      res
-        .status(200)
-        .send(
-          products.filter(
-            (element) => element.owner.isAdmin === req.body.isAdmin
-          )
-        );
+      res.send(
+        products.filter((element) => element.owner.isAdmin === req.body.isAdmin)
+      );
     } else {
       res.send(products);
     }
@@ -85,7 +81,7 @@ export const createProductReview = async (req, res) => {
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
       product.reviews.length;
     await product.save();
-    res.status(200).send(product);
+    res.send(product);
   } catch (e) {
     res.status(500).send();
   }
@@ -102,7 +98,7 @@ export const deleteUserProduct = async (req, res) => {
       }
     }
     await product.remove();
-    res.status(200).send();
+    res.send();
   } catch (e) {
     res.status(500).send();
   }
@@ -141,7 +137,7 @@ export const updateUserProduct = async (req, res) => {
     }
     updates.forEach((update) => (product[update] = req.body[update]));
     await product.save();
-    res.status(200).send(product);
+    res.send(product);
   } catch (e) {
     res.status(400).send();
   }
@@ -153,7 +149,7 @@ export const getTopProducts = async (req, res) => {
     if (!products) {
       return res.status(404).send();
     }
-    res.status(200).send(products);
+    res.send(products);
   } catch (e) {
     res.status(400).send();
   }

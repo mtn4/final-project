@@ -21,7 +21,7 @@ export const getUserOrders = async (req, res) => {
     if (!orders) {
       return res.status(404).send();
     }
-    res.status(200).send(orders);
+    res.send(orders);
   } catch (e) {
     res.status(500).send();
   }
@@ -33,7 +33,7 @@ export const getAllOrders = async (req, res) => {
     if (!req.user.isAdmin || !orders) {
       return res.status(404).send();
     }
-    res.status(200).send(orders);
+    res.send(orders);
   } catch (e) {
     res.status(500).send();
   }
@@ -48,7 +48,7 @@ export const getUserOrder = async (req, res) => {
     if (!order) {
       return res.status(404).send();
     }
-    res.status(200).send(order);
+    res.send(order);
   } catch (e) {
     res.status(500).send();
   }
