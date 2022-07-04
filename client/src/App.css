@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1 {
+  text-align: center;
+  margin: 15px 0;
+}
+.btns {
+  margin: 5px auto;
+  width: fit-content;
+}
+.grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 50%;
+}
+button {
+  margin: 2px 5px;
+  border: none;
+  padding: 10px;
+  background-color: cyan;
+  border-radius: 4px;
+}
