@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { BsChevronRight } from "react-icons/bs";
 import {
   AiOutlineShoppingCart,
   AiOutlineUser,
@@ -12,23 +13,82 @@ import "./Header.css";
 export default function Header() {
   const [keyword, setKeyword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [hmenu, setHmenu] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const ref = useRef(null);
+  const accountRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setHmenu(false);
+      }
+      if (accountRef.current && !accountRef.current.contains(event.target)) {
+        setAccountOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
   return (
     <header>
-      <div className="top-container">
-        <div className="top-container-content">
-          FREE Shipping on all orders!
-        </div>
-      </div>
-      <div className="middle-container">
-        <div className="middle-container-content">
-          Get Cash Today for your Phones, Electronics & Games!
+      <div
+        id="hmenu-container"
+        style={{
+          visibility: hmenu ? "visible" : "hidden",
+          width: hmenu ? "100%" : "0",
+        }}
+      >
+        <div id="hmenu-canvas-background"></div>
+        <div
+          id="hmenu-canvas"
+          style={{ transform: hmenu ? "translateX(0)" : "translateX(-100%)" }}
+          ref={ref}
+        >
+          <div className="menu-label">
+            <p>Menu</p>
+          </div>
+          <div className="all-label">
+            <span>All Products</span>
+            <span>
+              <BsChevronRight />
+            </span>
+          </div>
+          <div className="category-label">Shop By Category</div>
+          <ul className="menu-list">
+            <li>
+              <span>Audio</span>
+              <span>
+                <BsChevronRight />
+              </span>
+            </li>
+            <li>
+              <span>Cellphones</span>
+              <span>
+                <BsChevronRight />
+              </span>
+            </li>
+            <li>
+              <span>Computers</span>
+              <span>
+                <BsChevronRight />
+              </span>
+            </li>
+            <li>
+              <span>Gaming</span>
+              <span>
+                <BsChevronRight />
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="bottom-container">
         <div className="bottom-container-content">
-          <div className="hamburger-btn">
+          <div className="hamburger-btn" onClick={(e) => setHmenu(true)}>
             <span>
-              <IconContext.Provider value={{ size: 32 }}>
+              <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <GiHamburgerMenu />
               </IconContext.Provider>
             </span>
@@ -43,7 +103,7 @@ export default function Header() {
             }
             style={
               isFocused
-                ? { boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }
+                ? { boxShadow: "0 0 10px rgba(255, 255, 255, 1)" }
                 : { boxShadow: "none" }
             }
           >
@@ -59,17 +119,31 @@ export default function Header() {
               onBlur={(e) => setIsFocused(false)}
             />
           </div>
-          <div className="hamburger-btn">
+          <div
+            className="hamburger-btn"
+            onClick={(e) => setAccountOpen(!accountOpen)}
+            ref={accountRef}
+          >
             <span>
-              <IconContext.Provider value={{ size: 32 }}>
+              <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineUser />
               </IconContext.Provider>
             </span>
             <span className="hamburger-btn-menu">Account</span>
+            <div
+              id="myDropdown"
+              className={
+                accountOpen ? "dropdown-content show" : "dropdown-content"
+              }
+            >
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#contact">Contact</a>
+            </div>
           </div>
           <div className="hamburger-btn">
             <span>
-              <IconContext.Provider value={{ size: 32 }}>
+              <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineHeart />
               </IconContext.Provider>
             </span>
@@ -77,7 +151,7 @@ export default function Header() {
           </div>
           <div className="hamburger-btn">
             <span>
-              <IconContext.Provider value={{ size: 32 }}>
+              <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineShoppingCart />
               </IconContext.Provider>
             </span>

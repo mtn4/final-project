@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function HomeScreen() {
-  return <div></div>;
+  return <div className="home-screen"></div>;
 }
