@@ -9,7 +9,7 @@ export const createOrder = async (req, res) => {
     await order.save();
     res.status(201).send(order);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -23,7 +23,7 @@ export const getUserOrders = async (req, res) => {
     }
     res.send(orders);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -35,7 +35,7 @@ export const getAllOrders = async (req, res) => {
     }
     res.send(orders);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -50,6 +50,6 @@ export const getUserOrder = async (req, res) => {
     }
     res.send(order);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };

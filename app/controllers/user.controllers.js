@@ -4,11 +4,16 @@ export const createUser = async (req, res) => {
   const user = new User(req.body);
 
   try {
+    const userExists = await User.findOne({ email: req.body.email });
+    if (userExists) {
+      res.status(400);
+      throw new Error("User already exists");
+    }
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -21,7 +26,7 @@ export const loginUser = async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -34,7 +39,7 @@ export const logoutUser = async (req, res) => {
 
     res.send();
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -44,7 +49,7 @@ export const logoutAllUserInstances = async (req, res) => {
     await req.user.save();
     res.send();
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -68,7 +73,7 @@ export const updateUserProfile = async (req, res) => {
     await req.user.save();
     res.send(req.user);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -77,6 +82,6 @@ export const deleteUser = async (req, res) => {
     await req.user.remove();
     res.send(req.user);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };

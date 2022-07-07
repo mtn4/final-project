@@ -10,7 +10,7 @@ export const createProduct = async (req, res) => {
     await product.save();
     res.status(201).send(product);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -19,7 +19,7 @@ export const getUserProducts = async (req, res) => {
     await req.user.populate("products");
     res.send(req.user.products);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -34,7 +34,7 @@ export const getUserProduct = async (req, res) => {
     }
     res.send(product);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 export const getAllProducts = async (req, res) => {
@@ -51,7 +51,7 @@ export const getAllProducts = async (req, res) => {
       res.send(products);
     }
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 export const createProductReview = async (req, res) => {
@@ -83,7 +83,7 @@ export const createProductReview = async (req, res) => {
     await product.save();
     res.send(product);
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -100,7 +100,7 @@ export const deleteUserProduct = async (req, res) => {
     await product.remove();
     res.send();
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send({ error: e.message });
   }
 };
 
@@ -114,7 +114,7 @@ export const updateUserProduct = async (req, res) => {
     "category",
     "description",
     "price",
-    "countInStock",
+    "cntInStock",
   ];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
@@ -139,7 +139,7 @@ export const updateUserProduct = async (req, res) => {
     await product.save();
     res.send(product);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -151,6 +151,6 @@ export const getTopProducts = async (req, res) => {
     }
     res.send(products);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send({ error: e.message });
   }
 };
