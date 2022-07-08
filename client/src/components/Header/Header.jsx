@@ -32,6 +32,9 @@ export default function Header() {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
+  if (keyword) {
+    console.log("ds");
+  }
   return (
     <header>
       <div

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import ProductListScreen from "./screens/ProductListScreen/ProductListScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
