@@ -6,3 +6,17 @@
   box-sizing: border-box;
   font-family: Open Sans, sans-serif;
 }
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.margin {
+  margin-top: 107px !important;
+}
+a {
+  text-decoration: none;
+}

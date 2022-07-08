@@ -40,7 +40,7 @@ header {
 }
 .search-bar {
   height: 50px;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(196, 226, 255);
   position: relative;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ header {
 }
 #search-bar::placeholder {
   font-size: 18px;
-  color: black;
+  color: rgb(0, 0, 0);
   opacity: 0.7;
 }
 #hmenu-container {
@@ -74,7 +74,7 @@ header {
   right: 0;
   bottom: 0;
   z-index: 100000;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 #hmenu-canvas-background {
   background-color: rgba(0, 0, 0, 0.5);
@@ -92,7 +92,10 @@ header {
   height: 100%;
   box-shadow: 4px 0 10px 0 rgba(0, 0, 0, 0.4);
   display: flex;
-  transition: 0.5s;
+  transition: 0.3s;
+}
+#hmenu-canvas > a {
+  color: black;
 }
 .menu-label {
   padding: 20px 24px;
@@ -154,4 +157,7 @@ header {
 }
 .show {
   display: block;
+}
+.hamburger-btn-menu:hover {
+  text-decoration: underline;
 }

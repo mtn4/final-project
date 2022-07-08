@@ -8,6 +8,7 @@ import {
   AiOutlineHeart,
 } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
@@ -49,12 +50,14 @@ export default function Header() {
           <div className="menu-label">
             <p>Menu</p>
           </div>
-          <div className="all-label">
-            <span>All Products</span>
-            <span>
-              <BsChevronRight />
-            </span>
-          </div>
+          <Link to="/products" onClick={(e) => setHmenu(false)}>
+            <div className="all-label">
+              <span>All Products</span>
+              <span>
+                <BsChevronRight />
+              </span>
+            </div>
+          </Link>
           <div className="category-label">Shop By Category</div>
           <ul className="menu-list">
             <li>
@@ -94,9 +97,11 @@ export default function Header() {
             </span>
             <span className="hamburger-btn-menu">Menu</span>
           </div>
-          <div className="logo">
-            <span>T</span>ECH<span>S</span>HOP
-          </div>
+          <Link to="/">
+            <div className="logo">
+              <span>T</span>ECH<span>S</span>HOP
+            </div>
+          </Link>
           <div
             className={
               isFocused ? "search-bar search-bar-focused" : "search-bar"

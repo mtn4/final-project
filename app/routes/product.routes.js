@@ -3,7 +3,7 @@ import { auth } from "../middleware/auth.js";
 import {
   createProduct,
   getUserProducts,
-  getUserProduct,
+  getProduct,
   getAllProducts,
   createProductReview,
   deleteUserProduct,
@@ -25,7 +25,7 @@ productRouter.post("/reviews/:id", auth, createProductReview);
 
 productRouter.delete("/:id", auth, deleteUserProduct);
 
-productRouter.get("/:id", auth, getUserProduct);
+productRouter.get("/:id", getProduct);
 
 productRouter.patch("/:id", auth, updateUserProduct);
 

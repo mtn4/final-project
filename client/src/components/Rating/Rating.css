@@ -1,0 +1,10 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.rating-num-reviews {
+  color: rgb(71, 71, 71);
+  font-size: 12px;
+  font-weight: 400;
+}

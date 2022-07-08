@@ -9,7 +9,7 @@ export const createOrder = async (req, res) => {
     await order.save();
     res.status(201).send(order);
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
@@ -19,11 +19,11 @@ export const getUserOrders = async (req, res) => {
       "orderItems.product"
     );
     if (!orders) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "Orders not found" });
     }
     res.send(orders);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -31,11 +31,11 @@ export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().populate("orderItems.product");
     if (!req.user.isAdmin || !orders) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "Orders not found" });
     }
     res.send(orders);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -46,10 +46,10 @@ export const getUserOrder = async (req, res) => {
       owner: req.user._id,
     });
     if (!order) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "Orders not found" });
     }
     res.send(order);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };

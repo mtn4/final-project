@@ -13,11 +13,12 @@ export const createUser = async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
 export const loginUser = async (req, res) => {
+  console.log("object");
   try {
     const user = await User.findByCredentials(
       req.body.email,
@@ -26,7 +27,7 @@ export const loginUser = async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
@@ -39,7 +40,7 @@ export const logoutUser = async (req, res) => {
 
     res.send();
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -49,7 +50,7 @@ export const logoutAllUserInstances = async (req, res) => {
     await req.user.save();
     res.send();
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -65,7 +66,7 @@ export const updateUserProfile = async (req, res) => {
   );
 
   if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates!" });
+    return res.status(400).send({ message: "Invalid updates!" });
   }
 
   try {
@@ -73,7 +74,7 @@ export const updateUserProfile = async (req, res) => {
     await req.user.save();
     res.send(req.user);
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
@@ -82,6 +83,6 @@ export const deleteUser = async (req, res) => {
     await req.user.remove();
     res.send(req.user);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };

@@ -10,7 +10,7 @@ export const createProduct = async (req, res) => {
     await product.save();
     res.status(201).send(product);
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
@@ -19,39 +19,35 @@ export const getUserProducts = async (req, res) => {
     await req.user.populate("products");
     res.send(req.user.products);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
-export const getUserProduct = async (req, res) => {
+export const getProduct = async (req, res) => {
   const _id = req.params.id;
-
   try {
-    const product = await Product.findOne({ _id, owner: req.user._id });
-
+    const product = await Product.findOne({ _id });
     if (!product) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "Product not found" });
     }
     res.send(product);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().populate("owner", "isAdmin");
     if (!products) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "No products available" });
     }
-    if (Object.keys(req.body).includes("isAdmin")) {
-      res.send(
-        products.filter((element) => element.owner.isAdmin === req.body.isAdmin)
-      );
+    if (req.query.admin === "true") {
+      res.send(products.filter((element) => element.owner.isAdmin === true));
     } else {
       res.send(products);
     }
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 export const createProductReview = async (req, res) => {
@@ -60,13 +56,13 @@ export const createProductReview = async (req, res) => {
   try {
     const product = await Product.findOne({ _id });
     if (!product) {
-      return res.status(404).send();
+      return res.status(404).send({ message: "Product not found" });
     }
-    const alreadyReviewed = product.reviews.find(
-      (r) => r.owner === req.user._id
+    const alreadyReviewed = product.reviews.find((r) =>
+      r.owner.equals(req.user._id)
     );
     if (alreadyReviewed) {
-      res.status(400).send();
+      return res.status(400).send({ message: "Product already reviewed" });
     }
     const review = {
       name: name,
@@ -83,7 +79,7 @@ export const createProductReview = async (req, res) => {
     await product.save();
     res.send(product);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -94,13 +90,15 @@ export const deleteUserProduct = async (req, res) => {
     if (!product) {
       product = await Product.findOne({ _id });
       if (!product || !req.user.isAdmin) {
-        return res.status(404).send();
+        return res
+          .status(404)
+          .send({ message: "Error removing product, please try again" });
       }
     }
     await product.remove();
     res.send();
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ message: e.message });
   }
 };
 
@@ -120,7 +118,7 @@ export const updateUserProduct = async (req, res) => {
     allowedUpdates.includes(update)
   );
   if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates!" });
+    return res.status(400).send({ message: "Invalid updates!" });
   }
   try {
     let product = await Product.findOne({
@@ -132,14 +130,16 @@ export const updateUserProduct = async (req, res) => {
         _id: req.params.id,
       });
       if (!product || !req.user.isAdmin) {
-        return res.status(404).send();
+        return res
+          .status(404)
+          .send({ message: "Error updating product, please try again" });
       }
     }
     updates.forEach((update) => (product[update] = req.body[update]));
     await product.save();
     res.send(product);
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
 
@@ -147,10 +147,12 @@ export const getTopProducts = async (req, res) => {
   try {
     const products = await Product.find({}).sort({ rating: -1 }).limit(1);
     if (!products) {
-      return res.status(404).send();
+      return res
+        .status(404)
+        .send({ message: "Error getting products, please try again" });
     }
     res.send(products);
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ message: e.message });
   }
 };
