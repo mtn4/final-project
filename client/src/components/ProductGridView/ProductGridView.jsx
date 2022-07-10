@@ -17,13 +17,13 @@ export default function ProductGridView({
   return (
     <div className="product-grid-view-container">
       <div className="product-grid-view-image">
-        <Link to={`/products/${id}`}>
+        <Link to={`/product/${id}`}>
           <img src={`${image}`} alt={`${name}`} />
         </Link>
       </div>
       <Rating rating={rating} numReviews={numReviews} />
       <div className="product-grid-view-brand">{brand}</div>
-      <Link to={`/products/${id}`}>
+      <Link to={`/product/${id}`}>
         <div className="product-grid-view-name">{name}</div>
       </Link>
       <div className="product-grid-view-price">${price.toLocaleString()}</div>
@@ -31,7 +31,7 @@ export default function ProductGridView({
         Free Shipping
       </div>
       <IconContext.Provider value={{ size: 10 }}>
-        <Link to={`/products/${id}`}>
+        <Link to={`/product/${id}`}>
           <button className="product-list-view-cart-btn">
             <span>Add to Cart</span>
             <span>

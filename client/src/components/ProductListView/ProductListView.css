@@ -55,9 +55,11 @@
   overflow: hidden;
 }
 .product-list-view-brand {
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: uppercase;
+  color: rgb(114, 114, 114);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  padding: 8px 0;
 }
 .product-list-view-price {
   font-size: 24px;

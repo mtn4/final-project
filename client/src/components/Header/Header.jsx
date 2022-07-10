@@ -74,30 +74,38 @@ export default function Header() {
             </Link>
             <div className="category-label">Shop By Category</div>
             <ul className="menu-list">
-              <li>
-                <span>Audio</span>
-                <span>
-                  <BsChevronRight />
-                </span>
-              </li>
-              <li>
-                <span>Cellphones</span>
-                <span>
-                  <BsChevronRight />
-                </span>
-              </li>
-              <li>
-                <span>Computers</span>
-                <span>
-                  <BsChevronRight />
-                </span>
-              </li>
-              <li>
-                <span>Gaming</span>
-                <span>
-                  <BsChevronRight />
-                </span>
-              </li>
+              <Link to="/products/audio" onClick={(e) => setHmenu(false)}>
+                <li>
+                  <span>Audio</span>
+                  <span>
+                    <BsChevronRight />
+                  </span>
+                </li>
+              </Link>
+              <Link to="/products/cellphones" onClick={(e) => setHmenu(false)}>
+                <li>
+                  <span>Cellphones</span>
+                  <span>
+                    <BsChevronRight />
+                  </span>
+                </li>
+              </Link>
+              <Link to="/products/computers" onClick={(e) => setHmenu(false)}>
+                <li>
+                  <span>Computers</span>
+                  <span>
+                    <BsChevronRight />
+                  </span>
+                </li>
+              </Link>
+              <Link to="/products/videogames" onClick={(e) => setHmenu(false)}>
+                <li>
+                  <span>Gaming</span>
+                  <span>
+                    <BsChevronRight />
+                  </span>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

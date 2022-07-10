@@ -18,7 +18,7 @@ export default function ProductListView({
   return (
     <div className="product-list-view-container">
       <div className="product-list-view-img">
-        <Link to={`/products/${id}`}>
+        <Link to={`/product/${id}`}>
           <img src={`${image}`} alt={`${name}`} />
         </Link>
       </div>
@@ -27,7 +27,7 @@ export default function ProductListView({
           <Rating rating={rating} numReviews={numReviews} />
           <div className="product-list-view-brand">{brand}</div>
         </div>
-        <Link to={`/products/${id}`}>
+        <Link to={`/product/${id}`}>
           <div className="product-list-view-name">{name}</div>
         </Link>
         <div className="product-list-description">{description}</div>
@@ -36,7 +36,7 @@ export default function ProductListView({
         <div className="product-list-view-price">${price.toLocaleString()}</div>
         <div>Free Shipping</div>
         <IconContext.Provider value={{ size: 10 }}>
-          <Link to={`/products/${id}`}>
+          <Link to={`/product/${id}`}>
             <button className="product-list-view-cart-btn">
               <span>Add to Cart</span>
               <span>

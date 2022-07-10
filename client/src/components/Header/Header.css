@@ -127,7 +127,7 @@ header {
   display: flex;
   list-style: none;
 }
-.menu-list > li {
+.menu-list > a > li {
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -135,8 +135,9 @@ header {
   padding: 15px 24px;
   display: flex;
   justify-content: space-between;
+  color: black;
 }
-.menu-list > li:last-child {
+.menu-list > a > li:last-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .dropdown-content {
@@ -177,4 +178,7 @@ header {
 }
 .show {
   display: block;
+}
+.hamburger-btn > a {
+  height: 32px;
 }

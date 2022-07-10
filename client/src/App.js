@@ -23,7 +23,8 @@ export default function App() {
         <Switch>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/products" exact component={ProductListScreen} />
-          <Route path="/products/:id" component={ProductScreen} />
+          <Route path="/products/:name" component={ProductListScreen} />
+          <Route path="/product/:id" component={ProductScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/account" component={AccountScreen} />
