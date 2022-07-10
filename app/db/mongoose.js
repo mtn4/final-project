@@ -28,7 +28,7 @@ const productsArray = [
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4900/4900942_sd.jpg;maxHeight=640;maxWidth=550",
     price: 199.99,
     cntInStock: 5,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Beats Studio³ Wireless Noise Cancelling Headphones",
@@ -41,7 +41,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5920/5920901cv12d.jpg;maxHeight=640;maxWidth=550",
     price: 199.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "WH-1000XM5 Wireless Noise-Canceling Over-the-Ear Headphones",
@@ -54,7 +54,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6505/6505727_rd.jpg;maxHeight=640;maxWidth=550",
     price: 399.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Powerbeats Pro Totally Wireless Earbuds",
@@ -67,7 +67,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6341/6341988cv11d.jpg;maxHeight=640;maxWidth=550",
     price: 179.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "WF-1000XM4 True Wireless Noise Cancelling In-Ear Headphones",
@@ -80,7 +80,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6462/6462204_sd.jpg;maxHeight=640;maxWidth=550",
     price: 279.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "iPhone 13 Pro 5G 128GB",
@@ -93,7 +93,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6443/6443321_sd.jpg;maxHeight=640;maxWidth=550",
     price: 999.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "iPhone 13 Pro Max 5G 128GB",
@@ -106,7 +106,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6487/6487447_sd.jpg;maxHeight=640;maxWidth=550",
     price: 1099.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Pixel 6 Pro 128GB (Unlocked)",
@@ -119,7 +119,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6483/6483636_sd.jpg;maxHeight=640;maxWidth=550",
     price: 899.0,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Galaxy S22+ 128GB (Unlocked)",
@@ -132,7 +132,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6494/6494444_sd.jpg;maxHeight=640;maxWidth=550",
     price: 999.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Galaxy S22 Ultra 128GB (Unlocked)",
@@ -145,7 +145,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6494/6494426_sd.jpg;maxHeight=640;maxWidth=550",
     price: 1199.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "G15 15.6 FHD Gaming Laptop",
@@ -158,7 +158,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6461/6461724_sd.jpg;maxHeight=640;maxWidth=550",
     price: 799.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "ROG Zephyrus 16 WQXGA 165Hz Gaming Laptop",
@@ -171,7 +171,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6494/6494637_sd.jpg;maxHeight=640;maxWidth=550",
     price: 1999.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Nitro 5 - 15.6 FHD Gaming Laptop",
@@ -184,7 +184,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6504/6504566_sd.jpg;maxHeight=640;maxWidth=550",
     price: 899.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "TUF Gaming 17.3 Laptop",
@@ -197,7 +197,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6485/6485599_sd.jpg;maxHeight=640;maxWidth=550",
     price: 749.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "ROG Zephyrus 14 WQXGA 120Hz Gaming Laptop",
@@ -210,7 +210,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6494/6494638_sd.jpg;maxHeight=640;maxWidth=550",
     price: 1499.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "m15 R5 15.6 FHD Gaming Laptop",
@@ -223,7 +223,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6468/6468117_sd.jpg;maxHeight=640;maxWidth=550",
     price: 1699.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "OMEN - 16.1 Gaming Laptop",
@@ -236,7 +236,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6479/6479079cv11d.jpg;maxHeight=640;maxWidth=550",
     price: 1149.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "PlayStation 5 Console",
@@ -249,7 +249,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6426/6426149_sd.jpg;maxHeight=640;maxWidth=550",
     price: 499.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Xbox Series X 1TB Console",
@@ -262,7 +262,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6428/6428324_sd.jpg;maxHeight=640;maxWidth=550",
     price: 499.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
   {
     name: "Xbox Series S 512 GB All-Digital Console (Disc-free Gaming)",
@@ -275,7 +275,7 @@ const productsArray = [
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6430/6430277_sd.jpg;maxHeight=640;maxWidth=550",
     price: 299.99,
-    owner: "62c68901f8d38f18090522a9",
+    owner: "62cad84d9776a1b2863b2cc5",
   },
 ];
 
