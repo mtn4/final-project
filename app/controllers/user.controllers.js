@@ -25,34 +25,39 @@ export const loginUser = async (req, res) => {
       req.body.password
     );
     const token = await user.generateAuthToken();
+    if (user.tokens.length > 3) {
+      const tokens = user.tokens.slice(-3);
+      user.tokens = tokens;
+      await user.save();
+    }
     res.send({ user, token });
   } catch (e) {
     res.status(400).send({ message: e.message });
   }
 };
 
-export const logoutUser = async (req, res) => {
-  try {
-    req.user.tokens = req.user.tokens.filter((token) => {
-      return token.token !== req.token;
-    });
-    await req.user.save();
+// export const logoutUser = async (req, res) => {
+//   try {
+//     req.user.tokens = req.user.tokens.filter((token) => {
+//       return token.token !== req.token;
+//     });
+//     await req.user.save();
 
-    res.send();
-  } catch (e) {
-    res.status(500).send({ message: e.message });
-  }
-};
+//     res.send();
+//   } catch (e) {
+//     res.status(500).send({ message: e.message });
+//   }
+// };
 
-export const logoutAllUserInstances = async (req, res) => {
-  try {
-    req.user.tokens = [];
-    await req.user.save();
-    res.send();
-  } catch (e) {
-    res.status(500).send({ message: e.message });
-  }
-};
+// export const logoutAllUserInstances = async (req, res) => {
+//   try {
+//     req.user.tokens = [];
+//     await req.user.save();
+//     res.send();
+//   } catch (e) {
+//     res.status(500).send({ message: e.message });
+//   }
+// };
 
 export const getUserProfile = async (req, res) => {
   res.send(req.user);

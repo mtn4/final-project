@@ -6,8 +6,6 @@ import { User } from "../models/user/user.model.js";
 import {
   createUser,
   loginUser,
-  logoutUser,
-  logoutAllUserInstances,
   getUserProfile,
   updateUserProfile,
   deleteUser,
@@ -19,9 +17,9 @@ userRouter.post("/", createUser);
 
 userRouter.post("/login", loginUser);
 
-userRouter.post("/logout", auth, logoutUser);
+// userRouter.post("/logout", auth, logoutUser);
 
-userRouter.post("/logoutAll", auth, logoutAllUserInstances);
+// userRouter.post("/logoutAll", auth, logoutAllUserInstances);
 
 userRouter.get("/me", auth, getUserProfile);
 

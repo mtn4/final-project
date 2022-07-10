@@ -7,8 +7,9 @@ import ProductListScreen from "./screens/ProductListScreen/ProductListScreen";
 import ProductScreen from "./screens/ProductScreen/ProductScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
+import AccountScreen from "./screens/AccountScreen/AccountScreen";
 // import LoginScreen from "./screens/LoginScreen/LoginScreen";
-// import CartScreen from "./screens/CartScreen/CartScreen";
+import CartScreen from "./screens/CartScreen/CartScreen";
 // import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
 // import WishListScreen from "./screens/WishListScreen/WishListScreen";
 // import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
@@ -25,11 +26,13 @@ export default function App() {
           <Route path="/products/:id" component={ProductScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
+          <Route path="/account" component={AccountScreen} />
+          <Route path="/cart" exact component={CartScreen} />
           {/* 
               <Route path="/products/:id" component={ProductScreen} />
               <Route path="/login" exact component={LoginScreen} />
               
-              <Route path="/cart" exact component={CartScreen} />
+              
               <Route path="/profile" exact component={ProfileScreen} />
               <Route path="/checkout" exact component={PlaceOrderScreen} />
               <Route path="/wishlist" exact component={WishListScreen} />

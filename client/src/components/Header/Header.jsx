@@ -8,7 +8,10 @@ import {
   AiOutlineHeart,
 } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
+import { RiArrowUpSFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/userActions";
 import "./Header.css";
 
 export default function Header() {
@@ -18,6 +21,16 @@ export default function Header() {
   const [accountOpen, setAccountOpen] = useState(false);
   const ref = useRef(null);
   const accountRef = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -129,19 +142,41 @@ export default function Header() {
               ref={accountRef}
             >
               <IconContext.Provider value={{ color: "white", size: 32 }}>
-                <AiOutlineUser />
+                {userInfo ? (
+                  <AiOutlineUser />
+                ) : (
+                  <Link to="/login">
+                    <AiOutlineUser />
+                  </Link>
+                )}
               </IconContext.Provider>
-              <div className="hamburger-btn-menu">Sign In</div>
-              <div
-                id="myDropdown"
-                className={
-                  accountOpen ? "dropdown-content show" : "dropdown-content"
-                }
-              >
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+              <div className="hamburger-btn-menu">
+                {userInfo ? (
+                  `${userInfo.user.name}`
+                ) : (
+                  <Link to="/login">
+                    <span style={{ color: "white" }}>Sign In</span>
+                  </Link>
+                )}
               </div>
+              {userInfo ? (
+                <>
+                  <RiArrowUpSFill
+                    className={accountOpen ? "arrow-up show" : "arrow-up"}
+                  />
+                  <div
+                    id="myDropdown"
+                    className={
+                      accountOpen ? "dropdown-content show" : "dropdown-content"
+                    }
+                  >
+                    <Link to="/account">Account Overview</Link>
+                    <div onClick={logoutHandler}>Sign Out</div>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <div className="hamburger-btn">
               <IconContext.Provider value={{ color: "white", size: 32 }}>

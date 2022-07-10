@@ -51,9 +51,7 @@ export default function LoginScreen({ location, history }) {
           )}
           <form onSubmit={submitHandler}>
             <div className="login-screen-form-group">
-              <label className="login-screen-label" for="login-form-email">
-                Email
-              </label>
+              <label className="login-screen-label">Email</label>
               <input
                 id="login-form-email"
                 className="login-screen-input"
@@ -64,13 +62,11 @@ export default function LoginScreen({ location, history }) {
               />
             </div>
             <div className="login-screen-form-group">
-              <label className="login-screen-label" for="login-form-password">
-                Password
-              </label>
+              <label className="login-screen-label">Password</label>
               <input
                 id="login-form-password"
                 className="login-screen-input"
-                type="text"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

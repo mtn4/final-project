@@ -31,12 +31,14 @@ export default function ProductGridView({
         Free Shipping
       </div>
       <IconContext.Provider value={{ size: 10 }}>
-        <button className="product-list-view-cart-btn">
-          <span>Add to Cart</span>
-          <span>
-            <BsFillCaretRightFill />
-          </span>
-        </button>
+        <Link to={`/products/${id}`}>
+          <button className="product-list-view-cart-btn">
+            <span>Add to Cart</span>
+            <span>
+              <BsFillCaretRightFill />
+            </span>
+          </button>
+        </Link>
       </IconContext.Provider>
     </div>
   );
