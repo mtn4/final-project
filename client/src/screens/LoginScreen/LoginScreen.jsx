@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { PacmanLoader } from "react-spinners";
 import { login } from "../../actions/userActions";
+import { FiAlertCircle } from "react-icons/fi";
+import { IconContext } from "react-icons";
 import "./LoginScreen.css";
 
 export default function LoginScreen({ location, history }) {
@@ -27,30 +29,70 @@ export default function LoginScreen({ location, history }) {
     dispatch(login(email, password));
   };
   return (
-    <div className="margin">
-      {error && <h1>{error}</h1>}
-      {loading && <PacmanLoader color={"#0046BE"} size={50} />}
-      <form onSubmit={submitHandler}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <>
+      {loading && (
+        <div className="spinner">
+          <PacmanLoader color={"#0046BE"} size={50} />
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+      )}
+      <div className="login-screen">
+        <div className="login-screen-container">
+          <div className="login-screen-welcome">Welcome to TechShop</div>
+          <div className="login-screen-message">
+            Sign in to your TechShop account
+          </div>
+          {error && (
+            <div className="login-screen-error">
+              <IconContext.Provider value={{ size: 24 }}>
+                <FiAlertCircle />
+                {error}
+              </IconContext.Provider>
+            </div>
+          )}
+          <form onSubmit={submitHandler}>
+            <div className="login-screen-form-group">
+              <label className="login-screen-label" for="login-form-email">
+                Email
+              </label>
+              <input
+                id="login-form-email"
+                className="login-screen-input"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login-screen-form-group">
+              <label className="login-screen-label" for="login-form-password">
+                Password
+              </label>
+              <input
+                id="login-form-password"
+                className="login-screen-input"
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button className="login-page-submit" type="submit">
+              Sign In
+            </button>
+          </form>
+          <div className="login-screen-separator">
+            <span>OR</span>
+          </div>
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            <button
+              className="login-page-submit login-page-create"
+              type="submit"
+            >
+              Create Account
+            </button>
+          </Link>
         </div>
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }

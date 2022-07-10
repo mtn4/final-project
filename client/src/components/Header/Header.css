@@ -28,6 +28,7 @@ header {
   font-weight: 600;
   letter-spacing: -0.64px;
   text-align: center;
+  white-space: nowrap;
 }
 .logo,
 .logo > span {

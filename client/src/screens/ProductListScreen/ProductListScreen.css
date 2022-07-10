@@ -68,6 +68,6 @@
 .product-grid-view {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-left: 1px solid #eee;
   width: 100%;
+  border-left: 1px solid #eee;
 }

@@ -1,0 +1,78 @@
+.product-screen {
+  margin: auto;
+  max-width: 1440px;
+  padding: 40px 32px;
+}
+.main-product-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-product-left {
+  flex: 1 1 66.66667%;
+  height: 465px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.main-product-left img {
+  max-height: 465px;
+  display: block;
+}
+.main-product-right {
+  flex: 1 1 33.33333%;
+}
+.main-product-name {
+  font-family: Poppins, Open Sans, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  /* margin-bottom: 12px; */
+}
+.main-product-category {
+  padding: 20px 0;
+}
+.main-product-brand {
+  color: rgb(114, 114, 114);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  padding: 8px 0;
+}
+.main-product-price {
+  font-family: Poppins, Open Sans, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.42px;
+  line-height: 36px;
+  padding-right: 5px;
+  padding: 14px 0;
+}
+.main-product-btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: rgb(255, 163, 58);
+  border-radius: 3px;
+  border: 1px solid rgb(204, 102, 0);
+  cursor: pointer;
+}
+.main-product-shipping {
+  color: rgb(40, 40, 40);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22.4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 0;
+}

@@ -17,9 +17,11 @@ export default function ProductListView({
 }) {
   return (
     <div className="product-list-view-container">
-      <Link to={`/products/${id}`}>
-        <img src={`${image}`} alt={`${name}`} />
-      </Link>
+      <div className="product-list-view-img">
+        <Link to={`/products/${id}`}>
+          <img src={`${image}`} alt={`${name}`} />
+        </Link>
+      </div>
       <div className="product-list-view-mid">
         <div className="product-list-view-branding">
           <Rating rating={rating} numReviews={numReviews} />

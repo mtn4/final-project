@@ -53,7 +53,7 @@ export default function ProductListScreen() {
     ));
   };
   return (
-    <div className="product-list-screen margin">
+    <div className="product-list-screen">
       {loading ? (
         <div className="spinner">
           <PacmanLoader color={"#0046BE"} size={50} />

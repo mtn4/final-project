@@ -32,141 +32,133 @@ export default function Header() {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
-  if (keyword) {
-    console.log("ds");
-  }
   return (
-    <header>
-      <div
-        id="hmenu-container"
-        style={{
-          visibility: hmenu ? "visible" : "hidden",
-          width: hmenu ? "100%" : "0",
-        }}
-      >
-        <div id="hmenu-canvas-background"></div>
+    <>
+      <header>
         <div
-          id="hmenu-canvas"
-          style={{ transform: hmenu ? "translateX(0)" : "translateX(-100%)" }}
-          ref={ref}
+          id="hmenu-container"
+          style={{
+            visibility: hmenu ? "visible" : "hidden",
+            width: hmenu ? "100%" : "0",
+          }}
         >
-          <div className="menu-label">
-            <p>Menu</p>
-          </div>
-          <Link to="/products" onClick={(e) => setHmenu(false)}>
-            <div className="all-label">
-              <span>All Products</span>
-              <span>
-                <BsChevronRight />
-              </span>
+          <div id="hmenu-canvas-background"></div>
+          <div
+            id="hmenu-canvas"
+            style={{ transform: hmenu ? "translateX(0)" : "translateX(-100%)" }}
+            ref={ref}
+          >
+            <div className="menu-label">
+              <p>Menu</p>
             </div>
-          </Link>
-          <div className="category-label">Shop By Category</div>
-          <ul className="menu-list">
-            <li>
-              <span>Audio</span>
-              <span>
-                <BsChevronRight />
-              </span>
-            </li>
-            <li>
-              <span>Cellphones</span>
-              <span>
-                <BsChevronRight />
-              </span>
-            </li>
-            <li>
-              <span>Computers</span>
-              <span>
-                <BsChevronRight />
-              </span>
-            </li>
-            <li>
-              <span>Gaming</span>
-              <span>
-                <BsChevronRight />
-              </span>
-            </li>
-          </ul>
+            <Link to="/products" onClick={(e) => setHmenu(false)}>
+              <div className="all-label">
+                <span>All Products</span>
+                <span>
+                  <BsChevronRight />
+                </span>
+              </div>
+            </Link>
+            <div className="category-label">Shop By Category</div>
+            <ul className="menu-list">
+              <li>
+                <span>Audio</span>
+                <span>
+                  <BsChevronRight />
+                </span>
+              </li>
+              <li>
+                <span>Cellphones</span>
+                <span>
+                  <BsChevronRight />
+                </span>
+              </li>
+              <li>
+                <span>Computers</span>
+                <span>
+                  <BsChevronRight />
+                </span>
+              </li>
+              <li>
+                <span>Gaming</span>
+                <span>
+                  <BsChevronRight />
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="bottom-container">
-        <div className="bottom-container-content">
-          <div className="hamburger-btn" onClick={(e) => setHmenu(true)}>
-            <span>
+        <div className="bottom-container">
+          <div className="bottom-container-content">
+            <div className="hamburger-btn" onClick={(e) => setHmenu(true)}>
               <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <GiHamburgerMenu />
               </IconContext.Provider>
-            </span>
-            <span className="hamburger-btn-menu">Menu</span>
-          </div>
-          <Link to="/">
-            <div className="logo">
-              <span>T</span>ECH<span>S</span>HOP
+              <div className="hamburger-btn-menu">Menu</div>
             </div>
-          </Link>
-          <div
-            className={
-              isFocused ? "search-bar search-bar-focused" : "search-bar"
-            }
-            style={
-              isFocused
-                ? { boxShadow: "0 0 10px rgba(255, 255, 255, 1)" }
-                : { boxShadow: "none" }
-            }
-          >
-            <IconContext.Provider value={{ size: 24 }}>
-              <BiSearch />
-            </IconContext.Provider>
-            <input
-              id="search-bar"
-              type="search"
-              placeholder={isFocused ? "" : "Search phones, computers & more"}
-              onChange={(e) => setKeyword(e.target.value)}
-              onFocus={(e) => setIsFocused(true)}
-              onBlur={(e) => setIsFocused(false)}
-            />
-          </div>
-          <div
-            className="hamburger-btn"
-            onClick={(e) => setAccountOpen(!accountOpen)}
-            ref={accountRef}
-          >
-            <span>
+            <Link to="/">
+              <div className="logo">
+                <span>T</span>ECH<span>S</span>HOP
+              </div>
+            </Link>
+            <div
+              className={
+                isFocused ? "search-bar search-bar-focused" : "search-bar"
+              }
+              style={
+                isFocused
+                  ? { boxShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+                  : { boxShadow: "none" }
+              }
+            >
+              <IconContext.Provider value={{ size: 24 }}>
+                <BiSearch />
+              </IconContext.Provider>
+              <input
+                id="search-bar"
+                type="search"
+                placeholder={isFocused ? "" : "Search phones, computers & more"}
+                onChange={(e) => setKeyword(e.target.value)}
+                onFocus={(e) => setIsFocused(true)}
+                onBlur={(e) => setIsFocused(false)}
+              />
+            </div>
+            <div
+              className="hamburger-btn"
+              onClick={(e) => setAccountOpen(!accountOpen)}
+              ref={accountRef}
+            >
               <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineUser />
               </IconContext.Provider>
-            </span>
-            <span className="hamburger-btn-menu">Account</span>
-            <div
-              id="myDropdown"
-              className={
-                accountOpen ? "dropdown-content show" : "dropdown-content"
-              }
-            >
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#contact">Contact</a>
+              <div className="hamburger-btn-menu">Sign In</div>
+              <div
+                id="myDropdown"
+                className={
+                  accountOpen ? "dropdown-content show" : "dropdown-content"
+                }
+              >
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+              </div>
             </div>
-          </div>
-          <div className="hamburger-btn">
-            <span>
+            <div className="hamburger-btn">
               <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineHeart />
               </IconContext.Provider>
-            </span>
-            <span className="hamburger-btn-menu">Wishlist</span>
-          </div>
-          <div className="hamburger-btn">
-            <span>
+              <div className="hamburger-btn-menu">Wishlist</div>
+            </div>
+            <div className="hamburger-btn">
               <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineShoppingCart />
               </IconContext.Provider>
-            </span>
-            <span className="hamburger-btn-menu">Cart</span>
+              <div className="hamburger-btn-menu">Cart</div>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <div style={{ height: 107 }}></div>
+    </>
   );
 }

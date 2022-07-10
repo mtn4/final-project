@@ -21,10 +21,8 @@ export default function ProductGridView({
           <img src={`${image}`} alt={`${name}`} />
         </Link>
       </div>
-      <div className="product-grid-view-branding">
-        <Rating rating={rating} numReviews={numReviews} />
-        <div className="product-list-view-brand">{brand}</div>
-      </div>
+      <Rating rating={rating} numReviews={numReviews} />
+      <div className="product-grid-view-brand">{brand}</div>
       <Link to={`/products/${id}`}>
         <div className="product-grid-view-name">{name}</div>
       </Link>
