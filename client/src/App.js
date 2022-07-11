@@ -28,7 +28,7 @@ export default function App() {
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/account" component={AccountScreen} />
-          <Route path="/cart" exact component={CartScreen} />
+          <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/wishlist" exact component={WishlistScreen} />
           {/* 
               <Route path="/products/:id" component={ProductScreen} />

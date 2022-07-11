@@ -78,3 +78,6 @@
   border: 1px solid rgb(204, 102, 0);
   cursor: pointer;
 }
+.product-list-view-cart-btn:hover {
+  background-color: rgb(231, 148, 54);
+}

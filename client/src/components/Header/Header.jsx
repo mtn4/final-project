@@ -66,7 +66,7 @@ export default function Header() {
             </div>
             <Link to="/products" onClick={(e) => setHmenu(false)}>
               <div className="all-label">
-                <span>All Products</span>
+                <span className="menu-list-item">All Products</span>
                 <span>
                   <BsChevronRight />
                 </span>
@@ -76,7 +76,7 @@ export default function Header() {
             <ul className="menu-list">
               <Link to="/products/audio" onClick={(e) => setHmenu(false)}>
                 <li>
-                  <span>Audio</span>
+                  <span className="menu-list-item">Audio</span>
                   <span>
                     <BsChevronRight />
                   </span>
@@ -84,7 +84,7 @@ export default function Header() {
               </Link>
               <Link to="/products/cellphones" onClick={(e) => setHmenu(false)}>
                 <li>
-                  <span>Cellphones</span>
+                  <span className="menu-list-item">Cellphones</span>
                   <span>
                     <BsChevronRight />
                   </span>
@@ -92,7 +92,7 @@ export default function Header() {
               </Link>
               <Link to="/products/computers" onClick={(e) => setHmenu(false)}>
                 <li>
-                  <span>Computers</span>
+                  <span className="menu-list-item">Computers</span>
                   <span>
                     <BsChevronRight />
                   </span>
@@ -100,7 +100,7 @@ export default function Header() {
               </Link>
               <Link to="/products/videogames" onClick={(e) => setHmenu(false)}>
                 <li>
-                  <span>Gaming</span>
+                  <span className="menu-list-item">Gaming</span>
                   <span>
                     <BsChevronRight />
                   </span>
@@ -198,12 +198,14 @@ export default function Header() {
             ) : (
               ""
             )}
-            <div className="hamburger-btn">
-              <IconContext.Provider value={{ color: "white", size: 32 }}>
-                <AiOutlineShoppingCart />
-              </IconContext.Provider>
-              <div className="hamburger-btn-menu">Cart</div>
-            </div>
+            <Link to="/cart">
+              <div className="hamburger-btn">
+                <IconContext.Provider value={{ color: "white", size: 32 }}>
+                  <AiOutlineShoppingCart />
+                </IconContext.Provider>
+                <div className="hamburger-btn-menu">Cart</div>
+              </div>
+            </Link>
           </div>
         </div>
       </header>

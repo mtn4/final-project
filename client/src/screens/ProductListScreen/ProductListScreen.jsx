@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 import { FaTh, FaThList } from "react-icons/fa";
 import ProductListView from "../../components/ProductListView/ProductListView";
 import ProductGridView from "../../components/ProductGridView/ProductGridView";
+import { categoryName } from "../../utils/utils";
 import "./ProductListScreen.css";
 
 export default function ProductListScreen({ match }) {
@@ -68,14 +69,6 @@ export default function ProductListScreen({ match }) {
         />
       ));
   };
-  const categoryName = () => {
-    switch (match.params.name) {
-      case "videogames":
-        return "Gaming";
-      default:
-        return match.params.name;
-    }
-  };
   return (
     <div className="product-list-screen">
       {loading ? (
@@ -91,7 +84,9 @@ export default function ProductListScreen({ match }) {
           </div>
           <div className="product-list-screen-right">
             <div className="product-list-screen-category">
-              {match.params.name ? categoryName() : "All Products"}
+              {match.params.name
+                ? categoryName(match.params.name)
+                : "All Products"}
             </div>
             <div className="list-tools-bar">
               <div className="list-tools-bar-first">

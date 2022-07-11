@@ -182,3 +182,6 @@ header {
 .hamburger-btn > a {
   height: 32px;
 }
+.menu-list-item:hover {
+  text-decoration: underline;
+}

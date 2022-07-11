@@ -31,6 +31,11 @@
 }
 .main-product-category {
   padding: 20px 0;
+  font-size: 13px;
+  line-height: 15.6px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 .main-product-brand {
   color: rgb(114, 114, 114);
@@ -59,6 +64,9 @@
   background-color: rgb(255, 163, 58);
   border: 1px solid rgb(204, 102, 0);
   cursor: pointer;
+}
+.main-product-btn:hover {
+  background-color: rgb(231, 148, 54);
 }
 .main-product-shipping {
   color: rgb(40, 40, 40);

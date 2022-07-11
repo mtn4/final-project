@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { listProductDetails } from "../../actions/productActions";
 import {
   getWishlistStatus,
@@ -11,11 +12,15 @@ import { IconContext } from "react-icons";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaTruck } from "react-icons/fa";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { RiArrowRightSFill } from "react-icons/ri";
+import { categoryName } from "../../utils/utils";
 import "./ProductScreen.css";
 
 export default function ProductScreen({ match, history }) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
   const wishlistStatus = useSelector((state) => state.wishlistStatus);
@@ -24,6 +29,8 @@ export default function ProductScreen({ match, history }) {
   const { loading: loadingChange } = wishlistChange;
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
+  }, [dispatch, match]);
+  useEffect(() => {
     dispatch(getWishlistStatus(match.params.id));
   }, [dispatch, match, loadingChange]);
   const addToCartHandler = () => {
@@ -42,7 +49,19 @@ export default function ProductScreen({ match, history }) {
         <h1>{error}</h1>
       ) : (
         <>
-          <div className="main-product-category">Category</div>
+          <div className="main-product-category">
+            <Link to={`/`}>
+              <span>TechShop</span>
+            </Link>
+            <RiArrowRightSFill />
+            <Link to={`/products`}>
+              <span>All Products</span>
+            </Link>
+            <RiArrowRightSFill />
+            <Link to={`/products/${product.category}`}>
+              <span>{product.category && categoryName(product.category)}</span>
+            </Link>
+          </div>
           <div className="main-product-section">
             <div className="main-product-left">
               <img src={product.image} alt="" />
@@ -55,19 +74,23 @@ export default function ProductScreen({ match, history }) {
                 <div className="main-product-price">
                   ${product.price && product.price.toLocaleString()}
                 </div>
-                <IconContext.Provider value={{ color: "red", size: 32 }}>
-                  {status ? (
-                    <AiFillHeart
-                      style={{ cursor: "pointer" }}
-                      onClick={changeStatus}
-                    />
-                  ) : (
-                    <AiOutlineHeart
-                      style={{ cursor: "pointer" }}
-                      onClick={changeStatus}
-                    />
-                  )}
-                </IconContext.Provider>
+                {userInfo ? (
+                  <IconContext.Provider value={{ color: "red", size: 32 }}>
+                    {status ? (
+                      <AiFillHeart
+                        style={{ cursor: "pointer" }}
+                        onClick={changeStatus}
+                      />
+                    ) : (
+                      <AiOutlineHeart
+                        style={{ cursor: "pointer" }}
+                        onClick={changeStatus}
+                      />
+                    )}
+                  </IconContext.Provider>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="main-product-description">
                 {product.description}
