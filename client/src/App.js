@@ -11,7 +11,7 @@ import AccountScreen from "./screens/AccountScreen/AccountScreen";
 // import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import CartScreen from "./screens/CartScreen/CartScreen";
 // import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen";
-// import WishListScreen from "./screens/WishListScreen/WishListScreen";
+import WishlistScreen from "./screens/WishlistScreen/WishlistScreen";
 // import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import "./App.css";
 
@@ -29,6 +29,7 @@ export default function App() {
           <Route path="/register" component={RegisterScreen} />
           <Route path="/account" component={AccountScreen} />
           <Route path="/cart" exact component={CartScreen} />
+          <Route path="/wishlist" exact component={WishlistScreen} />
           {/* 
               <Route path="/products/:id" component={ProductScreen} />
               <Route path="/login" exact component={LoginScreen} />

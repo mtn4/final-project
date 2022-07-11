@@ -6,12 +6,20 @@ import {
   productDetailsReducer,
 } from "./reducers/productReducers";
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducers";
+import {
+  wishlistListReducer,
+  wishlistStatusReducer,
+  wishlistChangeReducer,
+} from "./reducers/wishlistReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  wishlistList: wishlistListReducer,
+  wishlistStatus: wishlistStatusReducer,
+  wishlistChange: wishlistChangeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

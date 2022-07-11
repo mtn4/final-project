@@ -41,3 +41,21 @@ export const getUserWishlistItems = async (req, res) => {
     res.status(400).send({ message: e.message });
   }
 };
+
+export const getProductWishlistStatus = async (req, res) => {
+  try {
+    const wishlistExists = await Wishlist.findOne({ owner: req.user._id });
+    if (!wishlistExists) {
+      return res.send(false);
+    }
+    const alreadyAdded = wishlistExists.products.findIndex((elem) =>
+      elem.product.equals(req.params.id)
+    );
+    if (alreadyAdded === -1) {
+      return res.send(false);
+    }
+    return res.send(true);
+  } catch (e) {
+    res.status(400).send({ message: e.message });
+  }
+};

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
+import {
+  getWishlistStatus,
+  changeWishlistStatus,
+} from "../../actions/wishlistActions";
 import { PacmanLoader } from "react-spinners";
 import Rating from "../../components/Rating/Rating";
 import { IconContext } from "react-icons";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaTruck } from "react-icons/fa";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import "./ProductScreen.css";
 
 export default function ProductScreen({ match, history }) {
@@ -13,15 +18,23 @@ export default function ProductScreen({ match, history }) {
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
+  const wishlistStatus = useSelector((state) => state.wishlistStatus);
+  const { loading: loadingStatus, status } = wishlistStatus;
+  const wishlistChange = useSelector((state) => state.wishlistChange);
+  const { loading: loadingChange } = wishlistChange;
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match]);
+    dispatch(getWishlistStatus(match.params.id));
+  }, [dispatch, match, loadingChange]);
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${quantity}`);
   };
+  const changeStatus = () => {
+    dispatch(changeWishlistStatus(match.params.id));
+  };
   return (
     <div className="product-screen">
-      {loading ? (
+      {loading || loadingChange || loadingStatus ? (
         <div className="spinner">
           <PacmanLoader color={"#0046BE"} size={50} />
         </div>
@@ -38,8 +51,23 @@ export default function ProductScreen({ match, history }) {
               <div className="main-product-name">{product.name}</div>
               <div className="main-product-brand">{product.brand}</div>
               <Rating rating={product.rating} numReviews={product.numReviews} />
-              <div className="main-product-price">
-                ${product.price && product.price.toLocaleString()}
+              <div className="main-product-price-wishlist">
+                <div className="main-product-price">
+                  ${product.price && product.price.toLocaleString()}
+                </div>
+                <IconContext.Provider value={{ color: "red", size: 32 }}>
+                  {status ? (
+                    <AiFillHeart
+                      style={{ cursor: "pointer" }}
+                      onClick={changeStatus}
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      style={{ cursor: "pointer" }}
+                      onClick={changeStatus}
+                    />
+                  )}
+                </IconContext.Provider>
               </div>
               <div className="main-product-description">
                 {product.description}

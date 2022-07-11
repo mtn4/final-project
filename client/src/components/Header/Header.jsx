@@ -186,12 +186,18 @@ export default function Header() {
                 ""
               )}
             </div>
-            <div className="hamburger-btn">
-              <IconContext.Provider value={{ color: "white", size: 32 }}>
-                <AiOutlineHeart />
-              </IconContext.Provider>
-              <div className="hamburger-btn-menu">Wishlist</div>
-            </div>
+            {userInfo ? (
+              <Link to="/wishlist">
+                <div className="hamburger-btn">
+                  <IconContext.Provider value={{ color: "white", size: 32 }}>
+                    <AiOutlineHeart />
+                  </IconContext.Provider>
+                  <div className="hamburger-btn-menu">Wishlist</div>
+                </div>
+              </Link>
+            ) : (
+              ""
+            )}
             <div className="hamburger-btn">
               <IconContext.Provider value={{ color: "white", size: 32 }}>
                 <AiOutlineShoppingCart />
