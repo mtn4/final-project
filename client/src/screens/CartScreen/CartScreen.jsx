@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, removeFromCart } from "../../actions/cartActions";
 import { FaTrashAlt } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import "./CartScreen.css";
@@ -21,6 +21,10 @@ export default function CartScreen({ match, location, history }) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   const renderCartProducts = () => {
     return cartItems.map((item, i) => (
@@ -53,7 +57,10 @@ export default function CartScreen({ match, location, history }) {
           </div>
           <div>
             <IconContext.Provider value={{ size: 14 }}>
-              <button className="remove-cart-btn">
+              <button
+                className="remove-cart-btn"
+                onClick={() => removeFromCartHandler(item.product)}
+              >
                 <span>
                   <FaTrashAlt />
                 </span>

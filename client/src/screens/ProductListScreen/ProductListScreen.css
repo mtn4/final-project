@@ -4,17 +4,7 @@
   padding: 40px 32px;
   display: flex;
 }
-.product-list-screen-left {
-  width: 234px;
-}
-.left-nav {
-  border-right: 1px solid #eee;
-  margin-right: -1px;
-  padding-right: 20px;
-}
 .product-list-screen-right {
-  border-left: 1px solid #eee;
-  padding-left: 20px;
   width: 100%;
 }
 .product-list-screen-category {

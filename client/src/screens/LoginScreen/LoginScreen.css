@@ -8,6 +8,7 @@
 }
 .login-screen-container {
   max-width: 35%;
+  min-width: 350px;
   margin: 0 auto;
   padding: 0 4px;
   margin-top: 32px;

@@ -45,6 +45,10 @@ export default function Header() {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   return (
     <>
       <header>
@@ -203,6 +207,9 @@ export default function Header() {
                 <IconContext.Provider value={{ color: "white", size: 32 }}>
                   <AiOutlineShoppingCart />
                 </IconContext.Provider>
+                <div className="total-cart-amount">
+                  {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                </div>
                 <div className="hamburger-btn-menu">Cart</div>
               </div>
             </Link>

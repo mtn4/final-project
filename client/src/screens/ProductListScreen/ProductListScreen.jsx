@@ -79,9 +79,6 @@ export default function ProductListScreen({ match }) {
         <h1>{error}</h1>
       ) : (
         <>
-          <div className="product-list-screen-left">
-            <div className="left-nav" style={{ height: 1000 }}></div>
-          </div>
           <div className="product-list-screen-right">
             <div className="product-list-screen-category">
               {match.params.name

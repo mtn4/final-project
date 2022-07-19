@@ -18,15 +18,14 @@ export const createUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  console.log("object");
   try {
     const user = await User.findByCredentials(
       req.body.email,
       req.body.password
     );
     const token = await user.generateAuthToken();
-    if (user.tokens.length > 3) {
-      const tokens = user.tokens.slice(-3);
+    if (user.tokens.length > 5) {
+      const tokens = user.tokens.slice(-5);
       user.tokens = tokens;
       await user.save();
     }
