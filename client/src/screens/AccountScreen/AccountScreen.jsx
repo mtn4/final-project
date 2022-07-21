@@ -52,6 +52,8 @@ export default function AccountScreen({ history }) {
       myApi(userInfo.token)
         .post("/users/me/avatar", formData, config)
         .then((response) => {
+          dispatch({ type: USER_UPDATE_PROFILE_RESET });
+          dispatch(getUserDetails("me"));
           alert("The file is successfully uploaded");
         })
         .catch((error) => {

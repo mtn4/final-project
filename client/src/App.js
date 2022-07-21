@@ -14,6 +14,7 @@ import CartScreen from "./screens/CartScreen/CartScreen";
 import WishlistScreen from "./screens/WishlistScreen/WishlistScreen";
 // import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import "./App.css";
+import CheckoutScreen from "./screens/CheckoutScreen/CheckoutScreen";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/account" component={AccountScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/wishlist" exact component={WishlistScreen} />
+          <Route path="/checkout" exact component={CheckoutScreen} />
           {/* 
               <Route path="/products/:id" component={ProductScreen} />
               <Route path="/login" exact component={LoginScreen} />

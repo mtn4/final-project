@@ -26,6 +26,10 @@ export default function CartScreen({ match, location, history }) {
     dispatch(removeFromCart(id));
   };
 
+  const checkoutHandler = () => {
+    history.push("/login?redirect=checkout");
+  };
+
   const renderCartProducts = () => {
     return cartItems.map((item, i) => (
       <div key={i} className="cart-product">
@@ -122,7 +126,11 @@ export default function CartScreen({ match, location, history }) {
                 </div>
               </div>
               <div>
-                <button className="main-product-btn checkout-btn">
+                <button
+                  className="main-product-btn checkout-btn"
+                  onClick={checkoutHandler}
+                  disabled={!(cartItems.length > 0)}
+                >
                   <span>Proceed To Checkout</span>
                 </button>
               </div>

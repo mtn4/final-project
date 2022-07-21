@@ -1,0 +1,38 @@
+.checkout-screen {
+  max-width: 1440px;
+  margin: auto;
+  padding: 40px 32px;
+}
+.checkout-screen-title {
+  font-family: Poppins, Open Sans, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.checkout-screen-shipping {
+  margin: auto;
+  max-width: 35%;
+  min-width: 350px;
+}
+.checkout-step {
+  position: absolute;
+  top: 2px;
+  left: 16px;
+}
+.checkout-method {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.confirm-address {
+  padding: 16px;
+  border: 1px solid black;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}

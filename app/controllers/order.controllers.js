@@ -15,9 +15,7 @@ export const createOrder = async (req, res) => {
 
 export const getUserOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ owner: req.user._id }).populate(
-      "orderItems.product"
-    );
+    const orders = await Order.find({ owner: req.user._id });
     if (!orders) {
       return res.status(404).send({ message: "Orders not found" });
     }
@@ -29,7 +27,7 @@ export const getUserOrders = async (req, res) => {
 
 export const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate("orderItems.product");
+    const orders = await Order.find();
     if (!req.user.isAdmin || !orders) {
       return res.status(404).send({ message: "Orders not found" });
     }

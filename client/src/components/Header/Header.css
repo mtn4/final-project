@@ -172,7 +172,7 @@ header {
   position: absolute;
   font-size: 40px;
   top: 42px;
-  z-index: 2;
+  z-index: 0;
   color: white;
   display: none;
 }
