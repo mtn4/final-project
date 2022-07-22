@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { RiArrowUpSFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import "./Header.css";
@@ -19,6 +19,7 @@ export default function Header() {
   const [isFocused, setIsFocused] = useState(false);
   const [hmenu, setHmenu] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const history = useHistory();
   const ref = useRef(null);
   const accountRef = useRef(null);
 
@@ -48,6 +49,12 @@ export default function Header() {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      history.push(`/search/${keyword}`);
+    }
+  };
 
   return (
     <>
@@ -137,13 +144,16 @@ export default function Header() {
               }
             >
               <IconContext.Provider value={{ size: 24 }}>
-                <BiSearch />
+                <Link to={`/search/${keyword}`}>
+                  <BiSearch />
+                </Link>
               </IconContext.Provider>
               <input
                 id="search-bar"
                 type="search"
                 placeholder={isFocused ? "" : "Search phones, computers & more"}
                 onChange={(e) => setKeyword(e.target.value)}
+                onKeyPress={handleEnter}
                 onFocus={(e) => setIsFocused(true)}
                 onBlur={(e) => setIsFocused(false)}
               />

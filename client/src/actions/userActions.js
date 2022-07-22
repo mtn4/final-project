@@ -15,6 +15,7 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_DETAILS_RESET,
 } from "../constants/userConstants";
+import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -50,6 +51,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("shippingAddress");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
   document.location.href = "/login";
 };
 

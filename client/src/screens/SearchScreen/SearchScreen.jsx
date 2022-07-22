@@ -1,73 +1,77 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listWishlistProducts } from "../../actions/wishlistActions";
+import { listProducts } from "../../actions/productActions";
 import { PacmanLoader } from "react-spinners";
 import { IconContext } from "react-icons";
 import { FaTh, FaThList } from "react-icons/fa";
 import ProductListView from "../../components/ProductListView/ProductListView";
 import ProductGridView from "../../components/ProductGridView/ProductGridView";
-import "./WishlistScreen.css";
+import "./SearchScreen.css";
 
-export default function WishlistScreen() {
+export default function ProductListScreen({ match }) {
   const [view, setView] = useState("list");
   const [sort, setSort] = useState("0");
   const dispatch = useDispatch();
-  const wishlistList = useSelector((state) => state.wishlistList);
-  const { loading, products, error } = wishlistList;
+  const productList = useSelector((state) => state.productList);
+  const { loading, products, error } = productList;
   useEffect(() => {
-    dispatch(listWishlistProducts());
+    dispatch(listProducts());
   }, [dispatch]);
   const renderListProducts = () => {
     return products
       .sort((a, b) => {
-        if (sort === "1")
-          return a.product.name.toLowerCase() < b.product.name.toLowerCase();
-        if (sort === "2") return a.product.price - b.product.price;
-        if (sort === "3") return b.product.price - a.product.price;
-        if (sort === "4") return b.product.numReviews - a.product.numReviews;
-        else return b.product.name.toLowerCase() < a.product.name.toLowerCase();
+        if (sort === "1") return a.name.toLowerCase() < b.name.toLowerCase();
+        if (sort === "2") return a.price - b.price;
+        if (sort === "3") return b.price - a.price;
+        if (sort === "4") return b.numReviews - a.numReviews;
+        else return b.name.toLowerCase() < a.name.toLowerCase();
       })
-      .map((elem, i) => (
+      .filter((product) =>
+        product.name.toLowerCase().includes(match.params.keyword.toLowerCase())
+      )
+      .map((product, i) => (
         <ProductListView
           key={i}
-          id={elem.product._id}
-          image={elem.product.image}
-          name={elem.product.name}
-          brand={elem.product.brand}
-          model={elem.product.model}
-          category={elem.product.category}
-          description={elem.product.description}
-          price={elem.product.price}
-          rating={elem.product.rating}
-          numReviews={elem.product.numReviews}
-          cntInStock={elem.product.cntInStock}
+          id={product._id}
+          image={product.image}
+          name={product.name}
+          brand={product.brand}
+          model={product.model}
+          category={product.category}
+          description={product.description}
+          price={product.price}
+          rating={product.rating}
+          numReviews={product.numReviews}
+          cntInStock={product.cntInStock}
         />
       ));
   };
   const renderGridProducts = () => {
     return products
       .sort((a, b) => {
-        if (sort === "1")
-          return a.product.name.toLowerCase() < b.product.name.toLowerCase();
-        if (sort === "2") return a.product.price - b.product.price;
-        if (sort === "3") return b.product.price - a.product.price;
-        if (sort === "4") return b.product.numReviews - a.product.numReviews;
-        else return b.product.name.toLowerCase() < a.product.name.toLowerCase();
+        if (sort === "1") return a.name.toLowerCase() < b.name.toLowerCase();
+        if (sort === "2") return a.price - b.price;
+        if (sort === "3") return b.price - a.price;
+        if (sort === "4") return b.numReviews - a.numReviews;
+        else return b.name.toLowerCase() < a.name.toLowerCase();
       })
-      .map((elem, i) => (
+      .filter((product) =>
+        product.name.toLowerCase().includes(match.params.keyword.toLowerCase())
+      )
+      .map((product, i) => (
         <ProductGridView
           key={i}
-          id={elem.product._id}
-          image={elem.product.image}
-          name={elem.product.name}
-          brand={elem.product.brand}
-          model={elem.product.model}
-          category={elem.product.category}
-          description={elem.product.description}
-          price={elem.product.price}
-          rating={elem.product.rating}
-          numReviews={elem.product.numReviews}
-          cntInStock={elem.product.cntInStock}
+          id={product._id}
+          image={product.image}
+          name={product.name}
+          brand={product.brand}
+          model={product.model}
+          category={product.category}
+          description={product.description}
+          price={product.price}
+          rating={product.rating}
+          numReviews={product.numReviews}
+          cntInStock={product.cntInStock}
         />
       ));
   };
@@ -81,11 +85,10 @@ export default function WishlistScreen() {
         <h1>{error}</h1>
       ) : (
         <>
-          <div className="product-list-screen-left">
-            <div className="left-nav" style={{ height: 1000 }}></div>
-          </div>
           <div className="product-list-screen-right">
-            <div className="product-list-screen-category">Wishlist</div>
+            <div className="product-list-screen-category">
+              {match.params.keyword}
+            </div>
             <div className="list-tools-bar">
               <div className="list-tools-bar-first">
                 <div className="list-sort">

@@ -4,6 +4,8 @@ import { PacmanLoader } from "react-spinners";
 import { getUserDetails, updateUserProfile } from "../../actions/userActions";
 import { myApi } from "../../api/api";
 import { USER_UPDATE_PROFILE_RESET } from "../../constants/userConstants";
+import Order from "../../components/Order/Order";
+import { listMyOrders } from "../../actions/orderActions";
 import "./AccountScreen.css";
 
 export default function AccountScreen({ history }) {
@@ -25,6 +27,9 @@ export default function AccountScreen({ history }) {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { orders } = orderListMy;
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -32,6 +37,7 @@ export default function AccountScreen({ history }) {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("me"));
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -75,6 +81,17 @@ export default function AccountScreen({ history }) {
       updates.password = password;
     }
     dispatch(updateUserProfile(updates));
+  };
+
+  const renderOrders = () => {
+    return orders.map((order, i) => (
+      <Order
+        key={i}
+        id={order._id}
+        createdAt={order.createdAt}
+        total={order.totalPrice}
+      />
+    ));
   };
 
   return (
@@ -131,6 +148,22 @@ export default function AccountScreen({ history }) {
               My Orders
             </span>
           </div>
+          {view === "orders" && (
+            <>
+              <table className="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>{renderOrders()}</tbody>
+              </table>
+            </>
+          )}
           <div className="account-screen-content">
             {view === "profile" && (
               <>

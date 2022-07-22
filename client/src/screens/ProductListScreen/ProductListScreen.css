@@ -23,7 +23,23 @@
 }
 .list-tools-bar > div {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+.list-sort {
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.list-sort select {
+  background-color: white;
+  border: 1px solid black;
+  padding: 0 8px;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 400;
 }
 .items-list-container {
   border-top: 1px solid #eee;

@@ -44,7 +44,7 @@ export const getUserOrder = async (req, res) => {
       owner: req.user._id,
     });
     if (!order) {
-      return res.status(404).send({ message: "Orders not found" });
+      return res.status(404).send({ message: "Order not found" });
     }
     res.send(order);
   } catch (e) {
