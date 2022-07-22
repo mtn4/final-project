@@ -54,7 +54,11 @@ export default function Rating({ rating, numReviews }) {
           </span>
         </div>
       </IconContext.Provider>
-      <span className="rating-num-reviews">({numReviews})</span>
+      {numReviews !== undefined ? (
+        <span className="rating-num-reviews">({numReviews})</span>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

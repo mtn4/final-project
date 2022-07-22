@@ -112,7 +112,7 @@ export default function AccountScreen({ history }) {
                 alt=""
               />
             ) : (
-              <img src="avatar.png" alt="" />
+              <img src="/avatar.png" alt="" />
             )}
           </div>
           <div className="account-screen-change-avatar">

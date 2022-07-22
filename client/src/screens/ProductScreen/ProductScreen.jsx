@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { listProductDetails } from "../../actions/productActions";
+import {
+  listProductDetails,
+  createProductReview,
+} from "../../actions/productActions";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import {
   getWishlistStatus,
   changeWishlistStatus,
@@ -14,22 +18,50 @@ import { FaTruck } from "react-icons/fa";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { RiArrowRightSFill } from "react-icons/ri";
 import { categoryName } from "../../utils/utils";
+import { FiAlertCircle } from "react-icons/fi";
+import Review from "../../components/Review/Review";
 import "./ProductScreen.css";
 
 export default function ProductScreen({ match, history }) {
   const [quantity, setQuantity] = useState(1);
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [rating, setRating] = useState(0);
+
   const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
+
   const wishlistStatus = useSelector((state) => state.wishlistStatus);
   const { loading: loadingStatus, status } = wishlistStatus;
+
   const wishlistChange = useSelector((state) => state.wishlistChange);
   const { loading: loadingChange } = wishlistChange;
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const { success: successProductReview, error: errorProductReview } =
+    productReviewCreate;
+
   useEffect(() => {
-    dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match]);
+    if (successProductReview) {
+      setRating(0);
+      setDescription("");
+      setTitle("");
+      setName("");
+      dispatch(listProductDetails(match.params.id));
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
+    if (!product._id || product._id !== match.params.id) {
+      dispatch(listProductDetails(match.params.id));
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
+  }, [dispatch, match, successProductReview, product._id]);
+
   useEffect(() => {
     dispatch(getWishlistStatus(match.params.id));
   }, [dispatch, match, loadingChange]);
@@ -38,6 +70,31 @@ export default function ProductScreen({ match, history }) {
   };
   const changeStatus = () => {
     dispatch(changeWishlistStatus(match.params.id));
+  };
+  const renderReviews = () => {
+    return product.reviews.map((review, i) => (
+      <Review
+        key={i}
+        name={review.name}
+        rating={review.rating}
+        description={review.description}
+        title={review.title}
+        createdAt={review.createdAt}
+        avatar={review.owner.avatar}
+      />
+    ));
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createProductReview(match.params.id, {
+        name,
+        rating,
+        description,
+        title,
+      })
+    );
   };
   return (
     <div className="product-screen">
@@ -149,6 +206,79 @@ export default function ProductScreen({ match, history }) {
               )}
             </div>
           </div>
+          <div className="review-section-title">
+            Customer Reviews of the {product.name}
+          </div>
+          <div className="create-a-review">
+            <div className="create-a-review-title">Add a Review</div>
+            {errorProductReview && (
+              <div className="login-screen-error">
+                <IconContext.Provider value={{ size: 24 }}>
+                  <FiAlertCircle />
+                  {errorProductReview}
+                </IconContext.Provider>
+              </div>
+            )}
+            {userInfo ? (
+              <>
+                <div className="create-a-review-rating">
+                  <select
+                    className="create-a-review-rating-select"
+                    onChange={(e) => setRating(e.target.value)}
+                  >
+                    <option defaultValue value="1">
+                      1
+                    </option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <form onSubmit={submitHandler}>
+                  <div className="login-screen-form-group">
+                    <label className="login-screen-label">Full Name</label>
+                    <input
+                      className="login-screen-input"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="login-screen-form-group">
+                    <label className="login-screen-label">Title</label>
+                    <input
+                      className="login-screen-input"
+                      type="text"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="login-screen-form-group">
+                    <label className="login-screen-label">Description</label>
+                    <textarea
+                      style={{ height: 100 }}
+                      className="login-screen-input"
+                      type="text"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <button className="login-page-submit" type="submit">
+                    Submit Review
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="create-a-review-title">
+                Sign in to add a review
+              </div>
+            )}
+          </div>
+          <div className="review-section-reviews">{renderReviews()}</div>
         </>
       )}
     </div>

@@ -30,6 +30,7 @@ export const getProduct = async (req, res) => {
     if (!product) {
       return res.status(404).send({ message: "Product not found" });
     }
+    await product.populate("reviews.owner");
     res.send(product);
   } catch (e) {
     res.status(500).send({ message: e.message });

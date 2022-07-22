@@ -1,0 +1,28 @@
+.review-container {
+  padding: 30px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.review-left {
+  width: 175px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.review-right {
+  width: 100%;
+}
+.review-right-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.review-rating-title {
+  display: flex;
+  gap: 10px;
+  font-weight: 700;
+}
