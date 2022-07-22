@@ -193,6 +193,11 @@ export default function Header() {
                     }
                   >
                     <Link to="/account">Account Overview</Link>
+                    {userInfo.user.isAdmin ? (
+                      <Link to="/admin/userslist">Users List</Link>
+                    ) : (
+                      ""
+                    )}
                     <div onClick={logoutHandler}>Sign Out</div>
                   </div>
                 </>

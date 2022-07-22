@@ -84,9 +84,21 @@ export const updateUserProfile = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    await req.user.remove();
-    res.send(req.user);
+    const user = await User.findById(req.params.id);
+    await user.remove();
+    res.send();
+    // await req.user.remove();
+    // res.send(req.user);
   } catch (e) {
     res.status(500).send({ message: e.message });
+  }
+};
+
+export const getAllUseres = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (e) {
+    res.status(400).send({ message: e.message });
   }
 };

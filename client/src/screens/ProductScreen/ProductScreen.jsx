@@ -27,7 +27,7 @@ export default function ProductScreen({ match, history }) {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ export default function ProductScreen({ match, history }) {
 
   useEffect(() => {
     if (successProductReview) {
-      setRating(0);
+      setRating(1);
       setDescription("");
       setTitle("");
       setName("");

@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import sharp from "sharp";
-import { auth } from "../middleware/auth.js";
+import { auth, admin } from "../middleware/auth.js";
 import { User } from "../models/user/user.model.js";
 import {
   createUser,
@@ -9,11 +9,16 @@ import {
   getUserProfile,
   updateUserProfile,
   deleteUser,
+  getAllUseres,
 } from "../controllers/user.controllers.js";
 
 const userRouter = express.Router();
 
 userRouter.post("/", createUser);
+
+userRouter.get("/", auth, admin, getAllUseres);
+
+userRouter.delete("/:id", auth, admin, deleteUser);
 
 userRouter.post("/login", loginUser);
 
@@ -24,8 +29,6 @@ userRouter.post("/login", loginUser);
 userRouter.get("/me", auth, getUserProfile);
 
 userRouter.patch("/me", auth, updateUserProfile);
-
-userRouter.delete("/me", auth, deleteUser);
 
 const upload = multer({
   limits: {

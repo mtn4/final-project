@@ -11,6 +11,7 @@ import {
   userRegisterReducer,
   userDetailsReducer,
   userUpdateProfileReducer,
+  userListReducer,
 } from "./reducers/userReducers";
 import {
   wishlistListReducer,
@@ -39,6 +40,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderListMy: orderListMyReducer,
   productReviewCreate: productReviewCreateReducer,
+  userList: userListReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
@@ -62,6 +64,7 @@ const initialState = {
 };
 
 const middleware = [thunk];
+
 const store = createStore(
   reducer,
   initialState,
