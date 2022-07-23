@@ -9,6 +9,7 @@ import {
   deleteUserProduct,
   updateUserProduct,
   getTopProducts,
+  getAllUserReviews,
 } from "../controllers/product.controllers.js";
 
 const productRouter = express.Router();
@@ -22,6 +23,8 @@ productRouter.get("/all", getAllProducts);
 productRouter.get("/top", getTopProducts);
 
 productRouter.post("/reviews/:id", auth, createProductReview);
+
+productRouter.get("/reviews/:id", getAllUserReviews);
 
 productRouter.delete("/:id", auth, deleteUserProduct);
 

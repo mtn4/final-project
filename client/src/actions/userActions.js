@@ -18,6 +18,12 @@ import {
   USER_LIST_SUCCESS,
   USER_LIST_REQUEST,
   USER_LIST_RESET,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
+  USER_DELETE_FAIL,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_REQUEST,
 } from "../constants/userConstants";
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 
@@ -187,6 +193,65 @@ export const listUsers = () => async (dispatch, getState) => {
     }
     dispatch({
       type: USER_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+export const deleteUser = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    await myApi(userInfo.token).delete(`/users/${id}`);
+
+    dispatch({ type: USER_DELETE_SUCCESS });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Please authenticate.") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: USER_DELETE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const updateUser = (id, user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await myApi(userInfo.token).patch(`/users/${id}`, user);
+
+    dispatch({ type: USER_UPDATE_SUCCESS });
+
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+
+    dispatch({ type: USER_DETAILS_RESET });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Please authenticate.") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: USER_UPDATE_FAIL,
       payload: message,
     });
   }

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { User } from "./user.model.js";
 import { Product } from "../product/product.model.js";
 import { Order } from "../order/order.model.js";
-import { Review } from "../review/review.model.js";
+import { Wishlist } from "../wishlist/wishlist.model.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -123,7 +123,7 @@ userSchema.pre("save", async function (next) {
 // Delete user tasks when user is removed
 userSchema.pre("remove", async function (next) {
   const user = this;
-  await Product.deleteMany({ owner: user._id });
+  await Wishlist.deleteMany({ owner: user._id });
   await Order.deleteMany({ owner: user._id });
   next();
 });

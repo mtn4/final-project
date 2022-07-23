@@ -1,4 +1,5 @@
 import { Product } from "../models/product/product.model.js";
+import { Wishlist } from "../models/wishlist/wishlist.model.js";
 
 export const createProduct = async (req, res) => {
   const product = new Product({
@@ -156,4 +157,29 @@ export const getTopProducts = async (req, res) => {
   } catch (e) {
     res.status(400).send({ message: e.message });
   }
+};
+
+export const getAllUserReviews = async (req, res) => {
+  // const _id = req.params.id;
+  // const reviews = await Product.find({ "reviews.owner": _id }, "reviews");
+  // for (let i = 0; i < reviews.length; i++) {
+  //   const product = await Product.findOne({ _id: reviews[i]._id });
+  //   const index = product.reviews.findIndex((review) =>
+  //     review.owner.equals(_id)
+  //   );
+  //   console.log(product.reviews[index].rating);
+  //   const oldRating = product.rating;
+  //   const oldNumReviews = product.numReviews;
+  //   product.numReviews--;
+  //   product.rating =
+  //     (oldRating * oldNumReviews - product.reviews[index].rating) /
+  //     product.numReviews;
+  //   product.reviews.splice(index, 1);
+  //   await product.save();
+  // }
+  // res.send();
+  const _id = req.params.id;
+  const products = await Product.find({ owner: _id });
+  console.log(products.length);
+  res.send();
 };

@@ -22,7 +22,7 @@ const productsArray = [
     category: "audio",
     description:
       "AirPods Pro feature Active Noise Cancellation for immersive sound. Transparency mode for hearing the world around you. They’re sweat and water resistant1 and have a customizable fit for all-day comfort.",
-    model: "GSRF MLWK3AM/A",
+    model: "MLWK3AM/A",
     brand: "Apple",
     image:
       "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4900/4900942_sd.jpg;maxHeight=640;maxWidth=550",

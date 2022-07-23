@@ -9,26 +9,28 @@ import {
   getUserProfile,
   updateUserProfile,
   deleteUser,
-  getAllUseres,
+  getAllUsers,
+  getUser,
+  updateUser,
 } from "../controllers/user.controllers.js";
 
 const userRouter = express.Router();
 
-userRouter.post("/", createUser);
-
-userRouter.get("/", auth, admin, getAllUseres);
-
-userRouter.delete("/:id", auth, admin, deleteUser);
-
-userRouter.post("/login", loginUser);
-
-// userRouter.post("/logout", auth, logoutUser);
-
-// userRouter.post("/logoutAll", auth, logoutAllUserInstances);
-
 userRouter.get("/me", auth, getUserProfile);
 
 userRouter.patch("/me", auth, updateUserProfile);
+
+userRouter.post("/", createUser);
+
+userRouter.get("/", auth, admin, getAllUsers);
+
+userRouter.get("/:id", auth, admin, getUser);
+
+userRouter.delete("/:id", auth, admin, deleteUser);
+
+userRouter.patch("/:id", auth, admin, updateUser);
+
+userRouter.post("/login", loginUser);
 
 const upload = multer({
   limits: {

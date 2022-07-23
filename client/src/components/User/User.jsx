@@ -9,7 +9,14 @@ import {
 import { BsFillTrash2Fill } from "react-icons/bs";
 import "./User.css";
 
-export default function User({ id, name, email, admin, createdAt }) {
+export default function User({
+  id,
+  name,
+  email,
+  admin,
+  createdAt,
+  deleteHandler,
+}) {
   return (
     <>
       <IconContext.Provider value={{ size: 32 }}>
@@ -26,8 +33,14 @@ export default function User({ id, name, email, admin, createdAt }) {
           </td>
           <td>{new Date(createdAt).toLocaleString()}</td>
           <td>
-            <AiFillEdit color="blue" />
-            <BsFillTrash2Fill color="gray" />
+            <Link to={`/admin/user/${id}`}>
+              <AiFillEdit style={{ cursor: "pointer" }} color="blue" />
+            </Link>
+            <BsFillTrash2Fill
+              style={{ cursor: "pointer" }}
+              color="gray"
+              onClick={(e) => deleteHandler(id)}
+            />
           </td>
         </tr>
       </IconContext.Provider>
