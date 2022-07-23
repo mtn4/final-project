@@ -199,7 +199,12 @@ export default function Header() {
                       ""
                     )}
                     {userInfo.user.isAdmin ? (
-                      <Link to="/admin/productlist">Product List</Link>
+                      <Link to="/admin/productlist">Products List</Link>
+                    ) : (
+                      ""
+                    )}
+                    {userInfo.user.isAdmin ? (
+                      <Link to="/admin/orderslist">Orders List</Link>
                     ) : (
                       ""
                     )}

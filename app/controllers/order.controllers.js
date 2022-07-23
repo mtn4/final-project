@@ -28,7 +28,7 @@ export const getUserOrders = async (req, res) => {
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find();
-    if (!req.user.isAdmin || !orders) {
+    if (!orders) {
       return res.status(404).send({ message: "Orders not found" });
     }
     res.send(orders);
@@ -39,12 +39,17 @@ export const getAllOrders = async (req, res) => {
 
 export const getUserOrder = async (req, res) => {
   try {
-    const order = await Order.findOne({
+    let order = await Order.findOne({
       _id: req.params.id,
       owner: req.user._id,
     });
     if (!order) {
-      return res.status(404).send({ message: "Order not found" });
+      order = await Order.findOne({
+        _id: req.params.id,
+      });
+      if (!order || !req.user.isAdmin) {
+        return res.status(404).send({ message: "Order not found" });
+      }
     }
     res.send(order);
   } catch (e) {

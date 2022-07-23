@@ -16,6 +16,7 @@ import UsersScreen from "./screens/UsersScreen/UsersScreen";
 import UserEditScreen from "./screens/UserEditScreen/UserEditScreen";
 import ProductEditScreen from "./screens/ProductEditScreen/ProductEditScreen";
 import AllProductsScreen from "./screens/AllProductsScreen/AllProductsScreen";
+import OrdersListScreen from "./screens/OrdersListScreen/OrdersListScreen";
 import "./App.css";
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/search/:keyword" exact component={SearchScreen} />
           <Route path="/admin/userslist" component={UsersScreen} />
+          <Route path="/admin/orderslist" component={OrdersListScreen} />
           <Route path="/admin/user/:id" component={UserEditScreen} />
           <Route path="/admin/product/:id" component={ProductEditScreen} />
           <Route

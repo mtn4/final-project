@@ -1,5 +1,5 @@
 import express from "express";
-import { auth } from "../middleware/auth.js";
+import { auth, admin } from "../middleware/auth.js";
 import {
   createOrder,
   getUserOrders,
@@ -13,7 +13,7 @@ orderRouter.post("/", auth, createOrder);
 
 orderRouter.get("/", auth, getUserOrders);
 
-orderRouter.get("/all", auth, getAllOrders);
+orderRouter.get("/all", auth, admin, getAllOrders);
 
 orderRouter.get("/:id", auth, getUserOrder);
 

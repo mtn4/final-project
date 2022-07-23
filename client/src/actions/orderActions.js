@@ -9,6 +9,9 @@ import {
   ORDER_LIST_MY_REQUEST,
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
+  ORDER_LIST_FAIL,
+  ORDER_LIST_SUCCESS,
+  ORDER_LIST_REQUEST,
 } from "../constants/orderConstants";
 import { CART_CLEAR_ITEMS } from "../constants/cartConstants";
 import { logout } from "./userActions";
@@ -106,6 +109,37 @@ export const listMyOrders = () => async (dispatch, getState) => {
     }
     dispatch({
       type: ORDER_LIST_MY_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const listOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_LIST_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const { data } = await myApi(userInfo.token).get(`/orders/all`);
+
+    dispatch({
+      type: ORDER_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Please authenticate.") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: ORDER_LIST_FAIL,
       payload: message,
     });
   }
