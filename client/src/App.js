@@ -14,6 +14,8 @@ import OrderScreen from "./screens/OrderScreen/OrderScreen";
 import SearchScreen from "./screens/SearchScreen/SearchScreen";
 import UsersScreen from "./screens/UsersScreen/UsersScreen";
 import UserEditScreen from "./screens/UserEditScreen/UserEditScreen";
+import ProductEditScreen from "./screens/ProductEditScreen/ProductEditScreen";
+import AllProductsScreen from "./screens/AllProductsScreen/AllProductsScreen";
 import "./App.css";
 
 export default function App() {
@@ -36,6 +38,12 @@ export default function App() {
           <Route path="/search/:keyword" exact component={SearchScreen} />
           <Route path="/admin/userslist" component={UsersScreen} />
           <Route path="/admin/user/:id" component={UserEditScreen} />
+          <Route path="/admin/product/:id" component={ProductEditScreen} />
+          <Route
+            path="/admin/productlist"
+            component={AllProductsScreen}
+            exact
+          />
         </Switch>
       </BrowserRouter>
     </>

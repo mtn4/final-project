@@ -14,6 +14,8 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 300;
+  display: flex;
+  justify-content: space-between;
 }
 .list-tools-bar {
   background: #f4f5f7;

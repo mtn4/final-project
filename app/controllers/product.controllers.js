@@ -88,14 +88,11 @@ export const createProductReview = async (req, res) => {
 export const deleteUserProduct = async (req, res) => {
   const _id = req.params.id;
   try {
-    let product = await Product.findOne({ _id, owner: req.user._id });
+    let product = await Product.findOne({ _id });
     if (!product) {
-      product = await Product.findOne({ _id });
-      if (!product || !req.user.isAdmin) {
-        return res
-          .status(404)
-          .send({ message: "Error removing product, please try again" });
-      }
+      return res
+        .status(404)
+        .send({ message: "Error removing product, please try again" });
     }
     await product.remove();
     res.send();
@@ -125,17 +122,11 @@ export const updateUserProduct = async (req, res) => {
   try {
     let product = await Product.findOne({
       _id: req.params.id,
-      owner: req.user._id,
     });
     if (!product) {
-      product = await Product.findOne({
-        _id: req.params.id,
-      });
-      if (!product || !req.user.isAdmin) {
-        return res
-          .status(404)
-          .send({ message: "Error updating product, please try again" });
-      }
+      return res
+        .status(404)
+        .send({ message: "Error updating product, please try again" });
     }
     updates.forEach((update) => (product[update] = req.body[update]));
     await product.save();

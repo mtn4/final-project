@@ -1,5 +1,5 @@
 import express from "express";
-import { auth } from "../middleware/auth.js";
+import { auth, admin } from "../middleware/auth.js";
 import {
   createProduct,
   getUserProducts,
@@ -26,10 +26,10 @@ productRouter.post("/reviews/:id", auth, createProductReview);
 
 productRouter.get("/reviews/:id", getAllUserReviews);
 
-productRouter.delete("/:id", auth, deleteUserProduct);
+productRouter.delete("/:id", auth, admin, deleteUserProduct);
 
 productRouter.get("/:id", getProduct);
 
-productRouter.patch("/:id", auth, updateUserProduct);
+productRouter.patch("/:id", auth, admin, updateUserProduct);
 
 export { productRouter };
