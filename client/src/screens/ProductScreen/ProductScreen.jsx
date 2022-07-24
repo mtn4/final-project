@@ -53,13 +53,9 @@ export default function ProductScreen({ match, history }) {
       setDescription("");
       setTitle("");
       setName("");
-      dispatch(listProductDetails(match.params.id));
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
-    if (!product._id || product._id !== match.params.id) {
-      dispatch(listProductDetails(match.params.id));
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
-    }
+    dispatch(listProductDetails(match.params.id));
+    dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
   }, [dispatch, match, successProductReview, product._id]);
 
   useEffect(() => {
