@@ -1,4 +1,5 @@
 import { Order } from "../models/order/order.model.js";
+import { Product } from "../models/product/product.model.js";
 
 export const createOrder = async (req, res) => {
   const order = new Order({
@@ -6,6 +7,17 @@ export const createOrder = async (req, res) => {
     owner: req.user._id,
   });
   try {
+    for (let i = 0; i < order.orderItems.length; i++) {
+      const product = await Product.findOne({
+        _id: order.orderItems[i].product,
+      });
+      if (product.cntInStock - order.orderItems[i].qty >= 0) {
+        product.cntInStock -= order.orderItems[i].qty;
+      } else {
+        product.cntInStock = 0;
+      }
+      await product.save();
+    }
     await order.save();
     res.status(201).send(order);
   } catch (e) {
