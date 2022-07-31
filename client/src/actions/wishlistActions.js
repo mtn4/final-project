@@ -10,6 +10,7 @@ import {
   WISHLIST_STATUS_SUCCESS,
   WISHLIST_STATUS_FAIL,
 } from "../constants/wishlistConstants";
+import { logout } from "./userActions";
 
 export const listWishlistProducts = () => async (dispatch, getState) => {
   try {
@@ -58,12 +59,16 @@ export const changeWishlistStatus = (id) => async (dispatch, getState) => {
     const { data } = await myApi(userInfo.token).post(`/wishlist/${id}`);
     dispatch({ type: WISHLIST_CHANGE_SUCCESS, payload: data });
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Please authenticate.") {
+      dispatch(logout());
+    }
     dispatch({
       type: WISHLIST_CHANGE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: message,
     });
   }
 };
