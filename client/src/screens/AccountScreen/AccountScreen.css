@@ -78,3 +78,15 @@
   background-color: #04aa6d;
   color: white;
 }
+@media only screen and (orientation: portrait) {
+  .account-screen {
+    padding: 12px;
+  }
+  .account-screen-hello {
+    font-size: 20px;
+  }
+  .orders-table td,
+  .orders-table th {
+    font-size: 12px;
+  }
+}

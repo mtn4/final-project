@@ -4,3 +4,9 @@
   font-weight: 700;
   margin-bottom: 20px;
 }
+
+@media only screen and (orientation: portrait) {
+  .order-number-title {
+    font-size: 20px;
+  }
+}

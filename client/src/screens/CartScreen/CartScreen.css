@@ -104,3 +104,17 @@
   gap: 20px;
   align-items: center;
 }
+
+@media only screen and (orientation: portrait) {
+  .cart-product {
+    flex-wrap: wrap;
+  }
+  .cart-section-left {
+    padding: 0 5px;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .cart-section-left {
+    padding: 0 5px;
+  }
+}

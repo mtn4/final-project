@@ -97,3 +97,18 @@
 .pagination_dot-active {
   background-color: rgb(72, 173, 255);
 }
+
+@media only screen and (orientation: portrait) {
+  .carousel {
+    height: 50vh;
+    width: 80vw;
+    top: 60%;
+  }
+}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .carousel {
+    height: 40vh;
+    width: 80vw;
+    top: 70%;
+  }
+}

@@ -241,7 +241,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <div style={{ height: 107 }}></div>
     </>
   );
 }

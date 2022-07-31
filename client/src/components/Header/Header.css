@@ -1,5 +1,4 @@
 header {
-  position: fixed;
   top: 0;
   width: 100%;
 }
@@ -198,4 +197,43 @@ header {
 }
 .search-bar > a {
   height: 24px;
+}
+@media only screen and (orientation: portrait) {
+  .bottom-container-content {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 0px;
+  }
+  #hmenu-canvas {
+    max-width: 300px;
+    width: 80%;
+  }
+  .logo,
+  .logo > span {
+    font-size: 24px;
+  }
+  .search-bar {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .bottom-container-content {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 0px;
+  }
+  #hmenu-canvas {
+    width: 100%;
+  }
+  .logo,
+  .logo > span {
+    font-size: 24px;
+  }
+  .search-bar {
+    height: 40px;
+  }
+  .category-label {
+    padding: 5px 24px;
+  }
 }

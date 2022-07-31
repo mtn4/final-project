@@ -36,3 +36,8 @@
   line-height: 24px;
   margin-bottom: 10px;
 }
+@media only screen and (orientation: portrait) {
+  .checkout-screen {
+    padding: 12px;
+  }
+}

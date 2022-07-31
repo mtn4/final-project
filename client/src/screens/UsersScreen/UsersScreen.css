@@ -3,3 +3,8 @@
   max-width: 1440px;
   padding: 40px 32px;
 }
+@media only screen and (orientation: portrait) {
+  .users-screen {
+    padding: 12px;
+  }
+}
