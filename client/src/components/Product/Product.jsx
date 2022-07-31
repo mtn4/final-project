@@ -9,6 +9,7 @@ export default function Product({
   id,
   name,
   price,
+  cntInStock,
   category,
   brand,
   createdAt,
@@ -21,6 +22,7 @@ export default function Product({
           <td>{id}</td>
           <td>{name}</td>
           <td>${price}</td>
+          <td>{cntInStock}</td>
           <td>{category}</td>
           <td>{brand}</td>
           <td>{new Date(createdAt).toLocaleString()}</td>

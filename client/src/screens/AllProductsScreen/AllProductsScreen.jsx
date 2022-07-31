@@ -75,7 +75,7 @@ export default function AllProductsScreen({ history, match }) {
   }, [dispatch, history, userInfo, successDelete, successCreate]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure")) {
+    if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
     }
   };
@@ -87,6 +87,7 @@ export default function AllProductsScreen({ history, match }) {
         id={product._id}
         name={product.name}
         price={product.price}
+        cntInStock={product.cntInStock}
         category={product.category}
         brand={product.brand}
         createdAt={product.createdAt}
@@ -129,6 +130,7 @@ export default function AllProductsScreen({ history, match }) {
                     <th>Product ID</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Stock</th>
                     <th>Category</th>
                     <th>Brand</th>
                     <th>Created At</th>
